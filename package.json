@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://gym-products.github.io/index/",
+  "homepage": "https://gym-products.github.io/",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
