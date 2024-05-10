@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import { useContext, useRef } from "react";
 
 import { useDrag, useDrop } from "react-dnd";
 import { Container, Label } from "./styles";

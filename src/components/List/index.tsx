@@ -1,4 +1,3 @@
-import React from "react";
 import { Container } from "./styles";
 import { MdAdd } from "react-icons/md";
 
