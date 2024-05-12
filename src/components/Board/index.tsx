@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { produce } from "immer";
 
 import { Container } from "./styles";
@@ -7,10 +7,25 @@ import List from "../List";
 import { loadLists } from "../../services/api";
 import BoardContext from "./context";
 
-const data = loadLists();
+import BarChart from "../BarChart";
 
 export default function Board() {
-  const [lists, setLists] = React.useState(data);
+  const [lists, setLists] = useState<any[]>([]); // Inicializa com um array vazio
+  const [loading, setLoading] = useState(true); // Estado para controlar o carregamento
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await loadLists();
+        setLists(data);
+        setLoading(false); // Defina loading como false quando a carga estiver completa
+      } catch (error) {
+        console.error("Error loading lists:", error);
+      }
+    };
+
+    fetchData();
+  }, []); // useEffect será executado apenas uma vez
 
   function move(from: number, to: number, fromList: number, toList: number) {
     const newLists = produce(lists, (draft) => {
@@ -21,12 +36,24 @@ export default function Board() {
     setLists(newLists);
   }
 
+  const data2 = [10, 20, 30, 40, 50];
+  const labels2 = ['A', 'B', 'C', 'D', 'E'];
+
   return (
     <BoardContext.Provider value={{ move: move, lists: lists }}>
       <Container>
-        {lists.map((list, index) => {
-          return <List key={list.title} listIndex={index} data={list} />;
-        })}
+        {loading ? ( // Mostra um indicador de carregamento enquanto os dados estão sendo carregados
+          <div>Loading...</div>
+        ) : (
+          lists.map((list, index) => (
+            <React.Fragment key={list.title}>
+              {index === 2 ? (
+                <BarChart data={data2} labels={labels2} />
+              ) : null}
+              <List key={list.title} listIndex={index} data={list} />
+            </React.Fragment>
+          ))
+        )}
       </Container>
     </BoardContext.Provider>
   );
