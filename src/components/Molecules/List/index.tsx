@@ -1,10 +1,10 @@
 import { Container } from "./styles";
 import { MdAdd } from "react-icons/md";
 
-import Card from "../Card";
-import { ILoadLists } from "../../services/api";
+import { IDietList } from "@interfaces";
+import { Card } from '@components/Molecules';
 
-export default function List({ data, listIndex }: IListComponentProps) {
+const List: React.FC<IListComponentProps> = ({ data, listIndex }) => {
   return (
     <Container done={data.done || false}>
       <header>
@@ -18,14 +18,23 @@ export default function List({ data, listIndex }: IListComponentProps) {
 
       <ul>
         {data.cards.map((card, index) => {
-          return <Card key={card.id} index={index} listIndex={listIndex} data={card} />;
+          return (
+            <Card
+              key={card.id}
+              index={index}
+              listIndex={listIndex}
+              data={card}
+            />
+          );
         })}
       </ul>
     </Container>
   );
-}
+};
 
 interface IListComponentProps {
-  data: ILoadLists;
+  data: IDietList;
   listIndex: number;
 }
+
+export default List;

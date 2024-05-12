@@ -1,14 +1,13 @@
-import { useContext, useRef } from "react";
-
+import { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
+
 import { Container, Label } from "./styles";
+import { useDietContext } from "@contexts";
+import { IDietCard } from "@interfaces";
 
-import { ICard } from "../../services/api";
-import BoardContext from "../Board/context";
-
-export default function Card({ data, index, listIndex }: ICardComponentProps) {
+const Card: React.FC<ICardComponentProps> = ({ data, index, listIndex }) => {
   const ref = useRef<HTMLDivElement>(null);
-  const { move } = useContext(BoardContext);
+  const { move } = useDietContext();
 
   const [{ isDragging }, dragRef] = useDrag({
     type: "CARD",
@@ -72,10 +71,12 @@ export default function Card({ data, index, listIndex }: ICardComponentProps) {
       {data.user && <img src={data.user} alt="" />}
     </Container>
   );
-}
+};
 
 interface ICardComponentProps {
-  data: ICard;
+  data: IDietCard;
   index: number;
   listIndex: number;
 }
+
+export default Card;

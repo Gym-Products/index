@@ -8,10 +8,14 @@ export default defineConfig({
   base: "/index/",
   resolve: {
     alias: {
-      // '@assets': path.resolve(__dirname, 'src/assets'),
-      '@components': path.resolve(__dirname, 'src/components'),
-      '@styles': path.resolve(__dirname, 'src/styles'),
-      // '@contexts': path.resolve(__dirname, 'src/contexts'),
+      '@assets': path.resolve(__dirname, 'src/assets'),
+      '@interfaces': path.resolve(__dirname, 'src/interfaces'),
+      '@contexts': path.resolve(__dirname, 'src/contexts'),
+      '@components/Atoms': path.resolve(__dirname, 'src/components/Atoms'),
+      '@components/Molecules': path.resolve(__dirname, 'src/components/Molecules'),
+      '@components/Organisms': path.resolve(__dirname, 'src/components/Organisms'),
+      '@templates': path.resolve(__dirname, 'src/templates'),
+      '@pages': path.resolve(__dirname, 'src/pages'),
     },
   },
 })

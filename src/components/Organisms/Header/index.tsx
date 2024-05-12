@@ -1,9 +1,11 @@
 import { Container } from "./styles";
 
-export default function Header() {
+const Header: React.FC = () => {
   return (
     <Container>
       <h1>Nutrição App</h1>
     </Container>
   );
-}
+};
+
+export default Header;

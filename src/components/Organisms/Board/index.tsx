@@ -2,14 +2,15 @@ import React, { useEffect, useState } from "react";
 import { produce } from "immer";
 
 import { Container } from "./styles";
-import List from "../List";
 
-import { loadLists } from "../../services/api";
-import BoardContext from "./context";
+import { loadLists } from "../../../services/api";
+import { DietContextProvider } from "@contexts";
 
-import BarChart from "../BarChart";
+import { BarChart } from "@components/Atoms";
+import { List } from "@components/Molecules";
 
-export default function Board() {
+
+const Board: React.FC = () => {
   const [lists, setLists] = useState<any[]>([]); // Inicializa com um array vazio
   const [loading, setLoading] = useState(true); // Estado para controlar o carregamento
 
@@ -40,7 +41,7 @@ export default function Board() {
   const labels2 = ['A', 'B', 'C', 'D', 'E'];
 
   return (
-    <BoardContext.Provider value={{ move: move, lists: lists }}>
+    <DietContextProvider move={move} dietLists={lists}>
       <Container>
         {loading ? ( // Mostra um indicador de carregamento enquanto os dados estão sendo carregados
           <div>Loading...</div>
@@ -55,6 +56,8 @@ export default function Board() {
           ))
         )}
       </Container>
-    </BoardContext.Provider>
+    </DietContextProvider>
   );
 }
+
+export default Board;
