@@ -1,19 +1,8 @@
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
-
-import Header from "./components/Header";
-import GlobalStyle from "./styles/global";
-import Board from "./components/Board";
+import { RouterProvider } from "react-router-dom";
+import router from "./router";
 
 function App() {
-  return (
-    <DndProvider backend={HTML5Backend}>
-      <Header />
-      <Board />
-
-      <GlobalStyle />
-    </DndProvider>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

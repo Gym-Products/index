@@ -6,24 +6,30 @@
     "module": "ESNext",
     "skipLibCheck": true,
 
-    /* Bundler mode */
-    "moduleResolution": "Bundler",
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "paths": {
+      "@components/Atoms": ["src/components/Atoms"],
+      "@components/Molecules": ["src/components/Molecules"],
+      "@components/Organisms": ["src/components/Organisms"],
+      "@assets": ["src/assets"],
+      "@interfaces": ["src/interfaces"],
+      "@contexts": ["src/contexts"],
+      "@templates": ["src/templates"],
+      "@pages": ["src/pages"],
+    },
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    // "baseUrl": "./",
-    // "paths": {
-    //   "@styles/*": ["src/styles/*"],
-    //   "@components/*": ["src/components/*"],
-    // },
 
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true,
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
